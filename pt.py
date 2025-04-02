@@ -112,7 +112,7 @@ def main():
 
             if st.sidebar.checkbox('MACD'):
                 macd_data = data[['MACD', 'Signal Line']]
-                st.subheader('Chỉ báo MACD')
+                #st.subheader('Chỉ báo MACD')
                 st.line_chart(macd_data)
 
             if st.sidebar.checkbox('Xem thống kê'):
