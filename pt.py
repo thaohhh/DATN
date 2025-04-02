@@ -111,9 +111,12 @@ def main():
             st.line_chart(data2)
 
             if st.sidebar.checkbox('MACD'):
-                macd_data = data[['MACD', 'Signal Line']]
-                #st.subheader('Chỉ báo MACD')
-                st.line_chart(macd_data)
+                data2['MACD'] = data['MACD']
+                data2['Signal Line'] = data['Signal Line']
+
+        # Hiển thị biểu đồ
+            st.subheader('Biểu đồ chứng khoán')
+            st.line_chart(data2)
 
             if st.sidebar.checkbox('Xem thống kê'):
                 st.subheader('Thống kê dữ liệu')
