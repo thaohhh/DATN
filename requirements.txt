@@ -3,3 +3,4 @@ pandas
 vnstock==0.2.9.2.3
 joblib
 beautifulsoup4
+ipython
