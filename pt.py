@@ -107,8 +107,8 @@ def main():
                 data2['Upper Band'] = data['Upper Band']
                 data2['Lower Band'] = data['Lower Band']
 
-            st.subheader('Biểu đồ giá cổ phiếu')
-            st.line_chart(data2)
+            #st.subheader('Biểu đồ giá cổ phiếu')
+            #st.line_chart(data2)
 
             if st.sidebar.checkbox('MACD'):
                 data2['MACD'] = data['MACD']
