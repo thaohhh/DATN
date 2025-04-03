@@ -154,10 +154,6 @@ def main():
                 else:
                     st.error("Ngày được chọn không tồn tại trong dữ liệu.")
 
-            if st.sidebar.button('Làm mới dữ liệu'):
-                st.cache_data.clear()
-                st.experimental_rerun()
-
         else:
             st.warning("Không có dữ liệu hoặc mã cổ phiếu không hợp lệ.")
 
