@@ -75,18 +75,21 @@ def main():
         st.error("Không thể tải danh sách công ty.")
         return
 
-    st.subheader("Danh sách công ty")
-    st.dataframe(stock_df)
-
+    # Lấy danh sách các mã có mô hình trong thư mục 'model/'
     model_files = [f.replace('_model.pkl', '') for f in os.listdir('model') if f.endswith('_model.pkl')]
 
-    # Lọc danh sách mã cổ phiếu chỉ bao gồm những mã có mô hình
+    # Lọc danh sách công ty và mã cổ phiếu chỉ bao gồm những mã có mô hình
     available_stocks = stock_df[stock_df['ticker'].isin(model_files)]
 
     if available_stocks.empty:
-        st.error("Không có mã cổ phiếu nào có mô hình dự báo.")
+        st.error("Không có công ty nào có mô hình dự báo.")
         return
 
+    # Hiển thị danh sách công ty có mô hình
+    st.subheader("Danh sách công ty có mô hình dự báo")
+    st.dataframe(available_stocks)
+
+    # Chọn mã cổ phiếu từ danh sách đã lọc
     st.sidebar.subheader('Chọn mã cổ phiếu')
     asset = st.sidebar.selectbox("Chọn mã cổ phiếu", available_stocks['ticker'].tolist(), index=0)
 
