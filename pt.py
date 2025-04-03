@@ -125,6 +125,7 @@ def main():
             if st.sidebar.checkbox('Xem dữ liệu chi tiết'):
                 st.subheader(f'Dữ liệu lịch sử {asset}')
                 detailed_data = data[['open', 'high', 'low', 'close', 'volume']]
+                detailed_data.index = detailed_data.index.strftime('%Y-%m-%d')
                 st.write(detailed_data)
 
             selected_date = st.sidebar.date_input("Chọn ngày để dự báo ngày tiếp theo")
