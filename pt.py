@@ -86,7 +86,7 @@ def main():
         return
 
     # Hiển thị danh sách công ty có mô hình
-    st.subheader("Danh sách công ty có mô hình dự báo")
+    st.subheader("Danh sách công ty")
     st.dataframe(available_stocks)
 
     # Chọn mã cổ phiếu từ danh sách đã lọc
