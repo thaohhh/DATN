@@ -90,8 +90,8 @@ def main():
     st.dataframe(available_stocks)
 
     # Chọn mã cổ phiếu từ danh sách đã lọc
-    st.sidebar.subheader('Chọn mã cổ phiếu')
-    asset = st.sidebar.selectbox("Chọn mã cổ phiếu", available_stocks['ticker'].tolist(), index=0)
+    st.sidebar.subheader('')
+    asset = st.sidebar.selectbox("Chọn mã chứng khoán", available_stocks['ticker'].tolist(), index=0)
 
 
     start_date = st.sidebar.date_input("Chọn ngày bắt đầu", datetime(2024, 1, 1))
