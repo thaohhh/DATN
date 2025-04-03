@@ -91,6 +91,9 @@ def main():
     asset = st.sidebar.selectbox("Chọn mã cổ phiếu", available_stocks['ticker'].tolist(), index=0)
 
 
+    start_date = st.sidebar.date_input("Chọn ngày bắt đầu", datetime(2024, 1, 1))
+    start_date = start_date.strftime('%Y-%m-%d')
+
     if asset:
         st.title(f"{asset} - Biểu đồ chứng khoán")
         data = load_vnstock_data(asset, start_date)
