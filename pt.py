@@ -3,6 +3,7 @@ import streamlit as st
 from vnstock import stock_historical_data, listing_companies
 from datetime import datetime, timedelta
 import joblib
+import os
 
 @st.cache_data
 def get_stock_list():
@@ -77,11 +78,18 @@ def main():
     st.subheader("Danh sách công ty")
     st.dataframe(stock_df)
 
-    st.sidebar.subheader('Chọn mã cổ phiếu')
-    asset = st.sidebar.selectbox("Chọn mã cổ phiếu", stock_df['ticker'].tolist(), index=0)
+    model_files = [f.replace('_model.pkl', '') for f in os.listdir('model') if f.endswith('_model.pkl')]
 
-    start_date = st.sidebar.date_input("Chọn ngày bắt đầu", datetime(2024, 1, 1))
-    start_date = start_date.strftime('%Y-%m-%d')
+    # Lọc danh sách mã cổ phiếu chỉ bao gồm những mã có mô hình
+    available_stocks = stock_df[stock_df['ticker'].isin(model_files)]
+
+    if available_stocks.empty:
+        st.error("Không có mã cổ phiếu nào có mô hình dự báo.")
+        return
+
+    st.sidebar.subheader('Chọn mã cổ phiếu')
+    asset = st.sidebar.selectbox("Chọn mã cổ phiếu", available_stocks['ticker'].tolist(), index=0)
+
 
     if asset:
         st.title(f"{asset} - Biểu đồ chứng khoán")
